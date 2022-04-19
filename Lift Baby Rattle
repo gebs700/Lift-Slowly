@@ -1,0 +1,35 @@
+#include <kipr/wombat.h>
+
+int main()
+{
+    int position=1870;
+    printf("lift slowly\n");
+    
+    
+    enable_servos();
+    
+    set_servo_position(1,1870);//servo arm will be down.
+    msleep(500);
+    
+    motor(3,50);
+    motor(0,50);
+    msleep(4000);
+    
+    ao();
+    
+    while(position >= 985)
+    {
+     set_servo_position(1,position);
+        msleep(100);
+        
+        position = position - 20;
+        
+    } 
+    ao();
+    msleep(1000);
+    
+    mav(0,-750);
+    mav(3,-800);
+    msleep(3000);
+    return 0;
+}
